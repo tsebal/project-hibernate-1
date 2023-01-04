@@ -4,23 +4,25 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 
 @Entity
 @Table(schema = "rpg", name = "player")
-@NamedQueries({
-        @NamedQuery(
-                name = "player_getAllCount",
-                query = "select count(p) from Player p"
-        )
-})
+@NamedQuery(
+        name = "player_getAllCount",
+        query = "select count(p) from Player p"
+)
 public class Player {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Long id;
 
